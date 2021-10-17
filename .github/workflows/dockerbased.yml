@@ -6,9 +6,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout source files
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Show files
+        run:  set ; pwd ; ls -l
       - name: Build the Docker Container
-        run: docker image build -t infinitime-build ./InfiniTime/docker
+        run: docker image build -t infinitime-build InfiniTime/docker
       - name: Run the container
         run: docker run --rm -it -v $(pwd):/sources infinitime-build
   
