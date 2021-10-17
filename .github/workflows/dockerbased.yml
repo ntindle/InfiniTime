@@ -1,1 +1,14 @@
+on:
+  [push, pull_request]
+  
+jobs:
+  build-container:
+    runs-on: ubuntu-latest
 
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker Container
+        run: docker image build -t infinitime-build ./InfiniTime/docker
+      - name: Run the container
+        run: docker run --rm -it -v $(pwd):/sources infinitime-build
+  
