@@ -16,5 +16,5 @@ jobs:
       - name: Build the Docker Container
         run: docker image build -t infinitime-build ./docker
       - name: Run the container
-        run: docker run --rm -v $(pwd):/sources infinitime-build
+        run: docker run --rm -v .:/sources infinitime-build
   
